@@ -1,10 +1,6 @@
 from collections import deque
 import heapq
 
-# Maze is a grid of 0 = free, 1 = wall
-# start, goal = (row, col)
-
-# --- 1. BFS (Shortest path in unweighted grid) ---
 def bfs(maze, start, goal):
     rows, cols = len(maze), len(maze[0])
     queue = deque([start])
@@ -26,19 +22,17 @@ def bfs(maze, start, goal):
                     parent[(nr,nc)] = (r, c)
                     queue.append((nr, nc))
 
-    # reconstruct path
     path = []
     cur = goal
     while cur != start:
         path.append(cur)
         cur = parent.get(cur)
         if cur is None:
-            return []  # no path found
+            return []
     path.append(start)
     path.reverse()
     return path
 
-# --- 2. DFS (May not find shortest, but fast) ---
 def dfs(maze, start, goal):
     stack = [start]
     visited = set([start])
@@ -69,7 +63,6 @@ def dfs(maze, start, goal):
     path.reverse()
     return path
 
-# --- 3. A* (Best algorithm for pathfinding) ---
 def heuristic(a, b):
     return abs(a[0]-b[0]) + abs(a[1]-b[1])
 
