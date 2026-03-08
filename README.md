@@ -1,1 +1,1 @@
-Maze Solver uses 3 different algos
+<h1>Application of dfs, bfs and a* algos
